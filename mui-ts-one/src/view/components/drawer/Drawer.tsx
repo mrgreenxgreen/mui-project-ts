@@ -11,14 +11,12 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+type Anchor = 'right';
 
-export default function Drawer() {
+export default function SwipeableTemporaryDrawer() {
     const [state, setState] = React.useState({
-        top: false,
-        left: false,
-        bottom: false,
         right: false,
+
     });
 
     const toggleDrawer =
@@ -36,12 +34,12 @@ export default function Drawer() {
                 setState({ ...state, [anchor]: open });
             };
 
-    const list = (anchor: Anchor) => (
+    const list = () => (g
         <Box
-            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+            sx={{ width: 250, backgroundColor:"red" }}
             role="presentation"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
+            // onClick={toggleDrawer(anchor, false)}
+            // onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
@@ -73,9 +71,9 @@ export default function Drawer() {
 
     return (
         <div>
-            {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
+            {(['right'] as const).map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+                    <Button onClick={toggleDrawer(anchor, true)}>Menu</Button>
                     <SwipeableDrawer
                         anchor={anchor}
                         open={state[anchor]}
